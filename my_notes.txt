@@ -1,0 +1,4 @@
+https://localhost/ homepage
+http://localhost:8080/ Adminer
+https://localhost:9443/ portainer
+http://localhost/ static_page
