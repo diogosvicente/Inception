@@ -44,6 +44,15 @@ services:
         DB_NAME: ${DB_NAME}
         DB_USER: ${DB_USER}
         DB_PASS: ${DB_PASS}
+        DB_HOST: ${DB_HOST}
+        WP_TITLE: ${WP_TITLE}
+        ADM_WP_NAME: ${ADM_WP_NAME}
+        ADM_WP_PASS: ${ADM_WP_PASS}
+        ADM_WP_EMAIL: ${ADM_WP_EMAIL}
+        WP_USERNAME: ${WP_USERNAME}
+        WP_USEREMAIL: ${WP_USEREMAIL}
+        WP_USERPASS: ${WP_USERPASS}
+        WP_HOST: ${WP_HOST}
     container_name: wordpress
     depends_on:
       - mariadb
@@ -106,6 +115,15 @@ services:
       - "80:80"
     restart: always
 
+  portainer:
+    image: portainer/portainer-ce:2.11.1
+    ports:
+      - "9443:9443"
+    volumes:
+        - data:/data
+        - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+
 volumes:
   wp-volume:
     driver_opts:
@@ -119,6 +137,8 @@ volumes:
       type: none
       device: /home/${USER}/data/mariadb
 
+  data:
+  
 networks:
     inception:
         driver: bridge
